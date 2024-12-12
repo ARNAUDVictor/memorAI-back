@@ -12,7 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->pushMiddleware(HandleCors::class);
+        $middleware->alias('cors', HandleCors::class);
+        $middleware->pushGlobalMiddleware('cors');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
